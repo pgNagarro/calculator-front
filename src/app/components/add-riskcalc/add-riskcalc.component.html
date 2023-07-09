@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Add Risk Calculation Logic Data</h1>
+    <form (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="elementName">Enter Element Name</label>
+            <input type="text" class="form-control" id="elementName" [(ngModel)]="riskCalc.elementName" name="elementName">
+        </div>
+
+        <div class="form-group">
+            <label for="formula">formula</label>
+            <input type="text" class="form-control" id="formula" [(ngModel)]="riskCalc.formula" name="formula">
+        </div>
+
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>

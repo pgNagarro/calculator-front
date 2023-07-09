@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Add Company Risk Score Data</h1>
+    <form id="riskScoreForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="companyName">Enter Company name</label>
+            <input type="text" class="form-control" id="companyName" name="companyName">
+        </div>
+
+        <div class="form-group">
+            <label for="dimensionName">Enter Dimension Name</label>
+            <input type="text" class="form-control" id="dimensionName" name="dimensionName">
+        </div>
+
+        <div class="form-group">
+            <label for="dimensionValue">Enter Dimension Value</label>
+            <input type="number" class="form-control" id="dimensionValue" name="dimensionValue">
+        </div>
+
+        <button class=" btn btn-success " type="submit ">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Update Company Risk Score Data</h1>
+    <form id="riskScoreForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="companyName">Enter Company name</label>
+            <input type="text" class="form-control" id="companyName" [(ngModel)]="companyRiskScore.companyName" name="companyName">
+        </div>
+        <div *ngFor="let dimension of companyRiskScore.dimensions">
+            <div class="form-group">
+                <label for="dimensions">Enter {{dimension.dimensionName}}</label>
+                <input type="number" class="form-control" [(ngModel)]="dimension.dimensionValue" [name]="'dimensionValue-' + dimension.dimensionName">
+            </div>
+        </div>
+        <button class=" btn btn-success " type="submit ">Submit</button>
+    </form>
+</div>
