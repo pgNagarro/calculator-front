@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ScoreCap } from 'src/app/models/scoreCap';
 import { AddscorecapService } from 'src/app/services/addscorecap.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-add-scorecap',
@@ -11,25 +13,45 @@ import { AddscorecapService } from 'src/app/services/addscorecap.service';
 })
 export class AddScorecapComponent implements OnInit {
 
-  scoreCap : ScoreCap = new ScoreCap();
-  constructor(private service:AddscorecapService,private router:Router) { }
+  scoreCapForm: FormGroup;
+  
+  constructor(private service:AddscorecapService,private router:Router,private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
+    this.scoreCapForm = this.formBuilder.group({
+      condition: ['', Validators.required],
+      totalRiskCappedScore: ['', Validators.required]
+    });
+  }
+  
+  get condition(){
+    return this.scoreCapForm.get('condition');
   }
 
-  saveScoreCap(){
-    this.service.addScoreCap(this.scoreCap).subscribe((data)=>{
-      console.log(data);
-      this.goToView();
-    },error=>console.error(error));    
+  get totalRiskCappedSore(){
+    return this.scoreCapForm.get('totalRiskCappedScore');
   }
+
+  saveScoreCap() {
+    if (this.scoreCapForm.valid) {
+      const scoreCapData = this.scoreCapForm.value;
+      this.service.addScoreCap(scoreCapData).subscribe(
+        (data) => {
+          console.log(data);
+          this.goToView();
+        },
+        (error) => console.error(error)
+      );
+    }
+  }
+  
 
   goToView(){
       this.router.navigate(['/view']);
   }
 
   onSubmit(){
-    console.log(this.scoreCap);
+
     this.saveScoreCap();
   }
 }

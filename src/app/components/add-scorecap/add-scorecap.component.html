@@ -1,17 +1,22 @@
 <div class="container">
     <h1>Add ScoreCap Data</h1>
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="scoreCapForm" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
             <label for="condition">Enter Condition</label>
-            <input type="text" class="form-control" id="condition" [(ngModel)]="scoreCap.condition" name="condition" required>
+            <input type="text" class="form-control" id="condition" formControlName="condition">
+            <span *ngIf="scoreCapForm.controls.condition && scoreCapForm.controls.condition.invalid && scoreCapForm.controls.condition.touched" style="color: red;">This input is not valid</span>
+            <div *ngIf="scoreCapForm.controls.condition.errors?.invalidCondition" class="invalid-feedback">
+                Condition must be "One high risk".
+            </div>
         </div>
-
+        <br>
         <div class="form-group">
             <label for="totalRiskCappedScore">Enter Total Risk Capped Score</label>
-            <input type="number" class="form-control" id="totalRiskCappedScore" [(ngModel)]="scoreCap.totalRiskCappedScore" name="totalRiskCappedScore" required>
+            <input type="number" class="form-control" id="totalRiskCappedScore" formControlName="totalRiskCappedScore">
+            <span *ngIf="scoreCapForm.controls.totalRiskCappedScore && scoreCapForm.controls.totalRiskCappedScore.invalid && scoreCapForm.controls.totalRiskCappedScore.touched" style="color: red;">This input is not valid</span>
         </div>
-
-        <button class="btn btn-success" type="submit">Submit</button>
+        <br>
+        <button class="btn btn-success" type="submit" [disabled]="scoreCapForm.invalid">Submit</button>
     </form>
 </div>

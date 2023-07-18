@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ResultService } from './services/result.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewComponent } from './components/view/view.component';
 import { AddScorecapComponent } from './components/add-scorecap/add-scorecap.component';
 import { AddRiskcalcComponent } from './components/add-riskcalc/add-riskcalc.component';
@@ -41,6 +41,7 @@ import { UpdateCompanyRiskScoreComponent } from './components/update-company-ris
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [ResultService],
   bootstrap: [AppComponent]
